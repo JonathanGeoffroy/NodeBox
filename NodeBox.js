@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var _ = require('underscore');
+var htmlizer = require('./htmlizer.js');
 
 var fileLocation = './files';
 
@@ -53,14 +54,32 @@ var postRequest = function (req, res) {
 	});
 };
 
+/**
+  * Manage a get request
+  */
+var getRequest = function (req, res) {
+	var filename = getFilename(req.url);
+	fs.exists(filename, function (exists) {
+		if (!exists) {
+			res.writeHead(409, {'Content-Type': 'text/plain'});
+			res.end(req.url + ' doesn\'t exist\n');
+		} else {
+			htmlizer.listFolder(filename, req, res);
+		}
+	});
+};
 /*
  * Create a server which listen for GET and POST requests,
  * and dispatch each request to the right function.
  */
 http.createServer(function (req, res) {
+	console.log(req.method);
 	switch (req.method) {
 	case 'POST':
 		postRequest(req, res);
+		break;
+	case 'GET':
+		getRequest(req, res);
 		break;
 	default:
 		res.writeHead(403, {'Content-Type': 'text/plain'});
