@@ -1,85 +1,18 @@
 var http = require('http');
-var fs = require('fs');
-var _ = require('underscore');
-var htmlizer = require('./htmlizer.js');
+var getRoot = require('./getRoot.js')
+var postRoot = require('./postRoot.js')
 
-var fileLocation = './files';
-
-/**
-  * Find the filename from the REST url
-  */
-var getFilename = function (url) {
-	if (url.charAt(0) === '/') {
-		return fileLocation + url;
-	}
-	return fileLocation + '/' + url;
-};
-
-/**
-  * Create each folder from url if it doesn't exist
-  */
-var createNonExistingFolder = function (url) {
-	var path = fileLocation + '/';
-	_.each(url.split('/').slice(1, -1), function (folder) {
-		fs.exists(path, function (exists) {
-			if (!exists) {
-				path += folder + '/';
-				fs.mkdirSync(path);
-			}
-		});
-	});
-};
-
-/**
-  * Manage a post request by save the content file into local file,
-  * and return the right answer to client:
-  *   -> 200 if file is saved
-  *   -> 409 if the file already exists
-  */
-var postRequest = function (req, res) {
-	var filename = getFilename(req.url);
-	fs.exists(filename, function (exists) {
-		if (!exists) {
-			createNonExistingFolder(req.url);
-			req.pipe(fs.createWriteStream(filename));
-
-			req.on('end', function () {
-				res.writeHead(200, {'Content-Type': 'text/plain'});
-				res.end('File saved\n');
-			});
-		} else {
-			res.writeHead(409, {'Content-Type': 'text/plain'});
-			res.end(req.url + ' already exists\n');
-		}
-	});
-};
-
-/**
-  * Manage a get request
-  */
-var getRequest = function (req, res) {
-	var filename = getFilename(req.url);
-	fs.exists(filename, function (exists) {
-		if (!exists) {
-			res.writeHead(409, {'Content-Type': 'text/plain'});
-			res.end(req.url + ' doesn\'t exist\n');
-		} else {
-			htmlizer.listFolder(filename, req, res);
-		}
-	});
-};
 /*
  * Create a server which listen for GET and POST requests,
  * and dispatch each request to the right function.
  */
 http.createServer(function (req, res) {
-	console.log(req.method);
 	switch (req.method) {
-	case 'POST':
-		postRequest(req, res);
-		break;
 	case 'GET':
-		getRequest(req, res);
+		getRoot.getRequest(req, res);
+		break;
+	case 'POST':
+		postRoot.postRequest(req, res);
 		break;
 	default:
 		res.writeHead(403, {'Content-Type': 'text/plain'});
