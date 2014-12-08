@@ -3,8 +3,8 @@ var getRoot = require('./getRoot.js')
 var postRoot = require('./postRoot.js')
 
 /*
- * Create a server which listen for GET and POST requests,
- * and dispatch each request to the right function.
+ * Create a server which listens for GET and POST requests,
+ * and dispatches each request to the right module.
  */
 http.createServer(function (req, res) {
 	switch (req.method) {

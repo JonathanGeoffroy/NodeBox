@@ -4,8 +4,8 @@ var requestManager = require('./requestManager.js');
 module.exports = {
 
 	/**
-	  * Manage a post request by save the content file into local file,
-	  * and return the right answer to client:
+	  * Manage a post request by saving the content file into local file,
+	  * and returning the right answer to client:
 	  *   -> 200 if file is saved
 	  *   -> 409 if the file already exists
 	  */
