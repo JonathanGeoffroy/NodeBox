@@ -6,9 +6,9 @@ var config = require('./config.js');
 module.exports = {
 
 	/**
-	  * Find the filename from the REST url
+	  * Find the location on server disk from the REST url
 	  */
-	getFilename : function (url) {
+	getFileLocation : function (url) {
 		if (url.charAt(0) === '/') {
 			return config.fileLocation + url;
 		}

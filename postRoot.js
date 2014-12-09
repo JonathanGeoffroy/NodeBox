@@ -1,5 +1,5 @@
 var fs = require('fs');
-var requestManager = require('./requestManager.js');
+var locationHelper = require('./locationHelper.js');
 
 module.exports = {
 
@@ -10,10 +10,10 @@ module.exports = {
 	  *   -> 409 if the file already exists
 	  */
 	postRequest : function (req, res) {
-		var filename = requestManager.getFilename(req.url);
+		var filename = locationHelper.getFilename(req.url);
 		fs.exists(filename, function (exists) {
 			if (!exists) {
-				requestManager.createNonExistingFolder(req.url);
+				locationHelper.createNonExistingFolder(req.url);
 				req.pipe(fs.createWriteStream(filename));
 
 				req.on('end', function () {
@@ -26,5 +26,4 @@ module.exports = {
 			}
 		});
 	}
-
-}
+};

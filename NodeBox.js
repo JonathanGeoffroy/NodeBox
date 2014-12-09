@@ -1,6 +1,6 @@
 var http = require('http');
-var getRoot = require('./getRoot.js')
-var postRoot = require('./postRoot.js')
+var getRoot = require('./getRoot.js');
+var postRoot = require('./postRoot.js');
 
 /*
  * Create a server which listens for GET and POST requests,

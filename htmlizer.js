@@ -1,6 +1,7 @@
 var fs = require('fs');
 var _ = require('underscore');
 var async = require('async');
+var config = require('./config.js');
 
 var writeFile = function (res, filename, callback) {
 	fs.readFile(filename, function (err, data) {
@@ -17,15 +18,17 @@ var writeFooter = function (res, callback) {
 	writeFile(res, './resources/listFooter.html', callback);
 };
 
-var isDirectory = function (name) {
-	return false;
+var isDirectory = function (locationPath, name) {
+	return fs.statSync(locationPath + name).isDirectory();
 };
 
-var listDirectory = function (dirPath, dirName) {
-	return '<li><a href = "#">' + dirName.split('/').slice(-1) + '</a></li>';
+var listDirectory = function (reqPath, dirName) {
+	return '<li><a href = "' + reqPath + dirName + '">' +
+		dirName.split('/').slice(-1) +
+		'</a></li>';
 };
 
-var listFile = function (dirPath, fileName) {
+var listFile = function (reqPath, fileName) {
 	return '<li><a href = "#">' + fileName.split('/').slice(-1) + '</a></li>';
 };
 
@@ -33,8 +36,8 @@ module.exports = {
 	/**
 	  * List a folder by giving html list to request response
 	  */
-	listFolder: function (dirPath, req, res) {
-		fs.readdir(dirPath, function (err, names) {
+	listFolder: function (locationPath, reqPath, req, res) {
+		fs.readdir(locationPath, function (err, names) {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			async.series([
 				function header(seriesCallback) {
@@ -42,10 +45,10 @@ module.exports = {
 				},
 				function list(seriesCallback) {
 					_.each(names, function (name) {
-						if (isDirectory(name)) {
-							res.write(listDirectory(dirPath, name, res));
+						if (isDirectory(locationPath, name)) {
+							res.write(listDirectory(reqPath, name, res));
 						} else {
-							res.write(listFile(dirPath, name, res));
+							res.write(listFile(reqPath, name, res));
 						}
 					});
 					seriesCallback();
