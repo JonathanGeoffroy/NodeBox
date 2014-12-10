@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	p  
+		ul
+			each link, name in items
+				li
+					a(href="#{link}") #{name}
+			else
+				li empty folder

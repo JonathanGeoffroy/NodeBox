@@ -5,26 +5,23 @@ var fs = require('fs');
 var locationHelper = require('../locationHelper.js');
 var htmlizer = require('../htmlizer.js');
 
-
-var list = function (locationPath, reqPath, req, res) {
-	fs.exists(locationPath, function (exists) {
-		if (!exists) {
-			res.send(req.url + ' doesn\'t exist\n');
-		} else {
-			htmlizer.listFolder(locationPath, reqPath, req, res);
-		}
-	});
-};
-
 /**
   * Manage a get request
   */
 router.get('\/*', function (req, res) {
 	console.log(req.params[0]);
-	var reqDirectory = req.params[0];
-	var locationPath = locationHelper.getFileLocation(reqDirectory);
-	
-	list(locationPath, reqDirectory, req, res);
+	var reqPath = req.params[0];
+	var locationPath = locationHelper.getFileLocation(reqPath);
+		
+	fs.exists(locationPath, function (exists) {
+		if (!exists) {
+			res.render('list', {items: [req.url + 'doesn\'t exist']});
+		} else {
+			htmlizer.listFolder(locationPath, reqPath, function (itemList) {
+				res.render('list', { items: itemList });
+			});
+		}
+	});
 });
 
 
