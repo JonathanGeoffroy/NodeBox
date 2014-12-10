@@ -19,7 +19,7 @@ var writeFooter = function (res, callback) {
 };
 
 var isDirectory = function (locationPath, name) {
-	return fs.statSync(locationPath + name).isDirectory();
+	return fs.statSync(locationPath + '/' + name).isDirectory();
 };
 
 var listDirectory = function (reqPath, dirName) {

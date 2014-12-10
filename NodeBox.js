@@ -1,22 +1,25 @@
 var http = require('http');
-var getRoot = require('./getRoot.js');
-var postRoot = require('./postRoot.js');
+var express = require('express');
+var app = express();
 
-/*
- * Create a server which listens for GET and POST requests,
- * and dispatches each request to the right module.
- */
-http.createServer(function (req, res) {
-	switch (req.method) {
-	case 'GET':
-		getRoot.getRequest(req, res);
-		break;
-	case 'POST':
-		postRoot.postRequest(req, res);
-		break;
-	default:
-		res.writeHead(403, {'Content-Type': 'text/plain'});
-		res.end();
-	}
-}).listen(1337, '127.0.0.1');
-console.log('Server running at http://127.0.0.1:1337/');
+var path = require('path');
+var getRoute = require('./routes/getRoute.js');
+var postRoute = require('./routes/postRoute.js');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// add routes mapping
+app.use('/', getRoute);
+app.use('/', postRoute);
+
+// run server
+var server = app.listen(1337, function () {
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log('Example app listening at http://%s:%s', host, port)
+
+})
+module.exports = app;
