@@ -2,19 +2,15 @@ var fs = require('fs');
 var _ = require('underscore');
 var async = require('async');
 var config = require('./config.js');
-
-var isDirectory = function (locationPath, name) {
-	return fs.statSync(locationPath + '/' + name).isDirectory();
-};
+var locationHelper = require('./locationHelper.js');
 
 var listDirectory = function (items, dirName, reqPath) {
 	var link = reqPath + '/' + dirName;
-	items[dirName] = link;
+	items.folders[dirName] = link;
 };
 
 var listFile = function (items, fileName, reqPath) {
-	var link = reqPath + '/' + fileName;
-	items[fileName] = link;
+	items.files.push(fileName);
 };
 
 module.exports = {
@@ -24,15 +20,20 @@ module.exports = {
 	listFolder: function (locationPath, reqPath, callback) {
 		fs.readdir(locationPath, function (err, names) {
 			var items = {};
+			items.files = [];
+			items.folders = {};
+
+			// add '..' folder if reqPath ins't '/'
+			if (reqPath !== '') {
+				items.folders['..'] = '/' + reqPath.split('/').slice(0, -1).join('/');
+			}
 			_.each(names, function (name) {
-				console.log(names);
-				if (isDirectory(locationPath, name)) {
+				if (locationHelper.isDirectory(locationPath + '/' + name)) {
 					listDirectory(items, name, reqPath);
 				} else {
 					listFile(items, name, reqPath);
 				}
 			});
-			console.log(items);
 			callback(items);
 		});
 	}

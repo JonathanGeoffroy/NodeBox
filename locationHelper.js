@@ -1,6 +1,5 @@
 var fs = require('fs');
 var _ = require('underscore');
-var htmlizer = require('./htmlizer.js');
 var config = require('./config.js');
 
 module.exports = {
@@ -28,5 +27,9 @@ module.exports = {
 				}
 			});
 		});
+	},
+
+	isDirectory: function (locationPath) {
+		return fs.statSync(locationPath).isDirectory();
 	}
 };

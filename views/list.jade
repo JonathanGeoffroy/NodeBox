@@ -1,10 +1,21 @@
 extends layout
 
 block content
-	p  
-		ul
-			each link, name in items
-				li
-					a(href="#{link}") #{name}
-			else
-				li empty folder
+	if(errors) 
+		div(class="alert alert-danger" role="alert")
+			p= "Errors: "
+			ul
+				each error in errors
+					li= error
+				
+	else
+		p  
+			ul
+				if(files || folders)
+					each link, name in folders
+						li
+							a(href="#{link}") #{name}
+					each name in files
+						li= name
+				else
+					li empty folder
