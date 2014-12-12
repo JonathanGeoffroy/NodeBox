@@ -12,28 +12,26 @@ var locationHelper = require('../locationHelper.js');
 	*   -> 409 if the file already exists
 	*/
 app.post('/*', function (req, res, next) {
-	var reqLocation = req.params[0];
-	var filename = locationHelper.getFileLocation(reqLocation);
+	var reqLocation = req.params[0],
+		filename = locationHelper.getFileLocation(reqLocation);
 	fs.exists(filename, function (exists) {
 		if (!exists) {
-			locationHelper.createNonExistingFolder(req.url);
-			
 			var form = new multiparty.Form();
 
 			// If any error occurs, just call next to dispatch error
 			form.on('error', next);
 
 			// As soon as the form is readed, redirect the user to list
-			form.on('close', function(){
-					res.redirect(reqLocation.split('/').slice(0, -1).join('/'));
+			form.on('close', function () {
+				res.redirect(reqLocation.split('/').slice(0, -1).join('/'));
 			});
 
 			// listen on field event for title
-			form.on('field', function(name, val){});
+			form.on('field', function (name, val) {});
 
 			// listen on part event for file
-			form.on('part', function(part){
-				 part.pipe(fs.createWriteStream(filename));
+			form.on('part', function (part) {
+				part.pipe(fs.createWriteStream(filename));
 			});
 
 			 // parse the form

@@ -1,7 +1,6 @@
 var fs = require('fs');
-var _ = require('underscore');
+var async = require('async');
 var config = require('./config.js');
-
 module.exports = {
 
 	/**
@@ -17,14 +16,18 @@ module.exports = {
 	/**
 	  * Create each folder from url if it doesn't exist
 	  */
-	createNonExistingFolder : function (url) {
+	createNonExistingFolders : function (url) {
+		console.log(url);
 		var path = config.fileLocation + '/';
-		_.each(url.split('/').slice(1, -1), function (folder) {
+		async.eachSeries(url.split('/'), function (folder, asyncCallback) {
+			path += folder + '/';
+			console.log(path);
 			fs.exists(path, function (exists) {
 				if (!exists) {
-					path += folder + '/';
 					fs.mkdirSync(path);
+					console.log('created: ' + path);
 				}
+				asyncCallback();
 			});
 		});
 	},

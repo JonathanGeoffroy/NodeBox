@@ -4,8 +4,8 @@ var app = express();
 var path = require('path');
 var listRoute = require('./routes/listRoute.js');
 var downloadRoute = require('./routes/downloadRoute.js');
-var uploadRoute = require('./routes/postRoute.js');
-
+var uploadRoute = require('./routes/uploadRoute.js');
+var createFolderRoute = require('./routes/createFolderRoute.js');
 var config = require('./config.js');
 
 // view engine setup
@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // add routes mapping
+app.use(config.createFolderBaseRoute, createFolderRoute);
 app.use(config.downloadBaseRoute, downloadRoute);
 app.use('/', listRoute);
 app.use('/', uploadRoute);

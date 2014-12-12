@@ -9,8 +9,8 @@ var htmlizer = require('../htmlizer.js');
   * Manage a get request in order to provide an HTML list concerning the current folder
   */
 router.get('/*', function (req, res) {
-	var reqPath = req.params[0];
-	var locationPath = locationHelper.getFileLocation(reqPath);
+	var reqPath = req.params[0],
+		locationPath = locationHelper.getFileLocation(reqPath);
 	fs.exists(locationPath, function (exists) {
 		if (!exists || !locationHelper.isDirectory(locationPath)) {
 			res.render('list', {errors: [req.url + ' doesn\'t exist']});

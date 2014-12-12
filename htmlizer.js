@@ -15,7 +15,7 @@ var listLink = function (name, reqPath) {
 };
 
 var downloadLink = function (name, reqPath) {
-	return config.downloadBaseRoute + reqPath + '/' + name;
+	return config.downloadBaseRoute + '/' + reqPath + '/' + name;
 };
 
 var listDirectory = function (items, dirName, reqPath) {

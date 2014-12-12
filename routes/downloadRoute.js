@@ -17,7 +17,7 @@ var download = function (locationPath, res) {
 		// This must be a "directory"
 		fstream.Reader({ path: locationPath, type: "Directory" })
 		  .pipe(packer)
-		  .pipe(res)
+		  .pipe(res);
 	} else {
 		res.sendFile(locationPath, {root: __dirname + '/../' });
 	}
@@ -28,10 +28,10 @@ var download = function (locationPath, res) {
   */
 router.get('/*', function (req, res) {
 	console.log('download');
-	var reqPath = req.params[0];
-	var locationPath = locationHelper.getFileLocation(reqPath);
+	var reqPath = req.params[0],
+		locationPath = locationHelper.getFileLocation(reqPath);
 	fs.exists(locationPath, function (exists) {
-		if(!exists) {
+		if (!exists) {
 			console.log(locationPath);
 			res.render('list', {errors: [req.url + ' doesn\'t exist']});
 		} else {

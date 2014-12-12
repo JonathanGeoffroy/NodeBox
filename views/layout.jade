@@ -6,6 +6,8 @@ html
 	body
 		block content
 	script.
+		var baseRequest = window.location.protocol + "//" + window.location.host + "/";
+		// Change file form action
 		var inputFile = document.getElementById("inputFile");
 		var fileForm = document.getElementById('fileForm');
 
@@ -13,8 +15,18 @@ html
 			console.log('on change');
 			var file = inputFile.files;
 			if(file) {
-				var urlRequest = window.location.protocol + "//" + window.location.host + "/" +
-					window.location.pathname + '/' + file[0].name;
+				var urlRequest = baseRequest + window.location.pathname + '/' + file[0].name;
 				fileForm.setAttribute('action', urlRequest);
 			}
+		};
+
+		// Change folder form action
+		var folderForm = document.getElementById('folderForm');
+		var folderInput = document.getElementById('folderInput');
+		var folderSubmitButton = document.getElementById('folderSubmit');
+		folderSubmitButton.onclick = function () {
+			var urlRequest = baseRequest + 'folder/' + window.location.pathname + '/' + folderInput.value;
+			folderForm.setAttribute('action', urlRequest);
+			alert('-->' + forlderForm.getAttribute());
+			return false;
 		};
