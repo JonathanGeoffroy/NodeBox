@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
-var locationHelper = require('../locationHelper.js');
+var locationHelper = require('../helpers/locationHelper.js');
 
 /**
   * Manage a post request in order to create new folders.

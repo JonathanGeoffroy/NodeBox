@@ -2,7 +2,7 @@ var fs = require('fs');
 var _ = require('underscore');
 var async = require('async');
 var locationHelper = require('./locationHelper.js');
-var config = require('./config.js');
+var config = require('../config.js');
 
 var listLink = function (name, reqPath) {
 	var link = '';

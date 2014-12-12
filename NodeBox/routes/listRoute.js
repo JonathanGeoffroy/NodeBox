@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-var locationHelper = require('../locationHelper.js');
-var htmlizer = require('../htmlizer.js');
+var locationHelper = require('../helpers/locationHelper.js');
+var htmlizer = require('../helpers/htmlizer.js');
 
 /**
   * Manage a get request in order to provide an HTML list concerning the current folder

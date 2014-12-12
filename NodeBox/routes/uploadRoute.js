@@ -3,7 +3,7 @@ var app = module.exports = express();
 var multiparty = require('multiparty');
 var format = require('util').format;
 var fs = require('fs');
-var locationHelper = require('../locationHelper.js');
+var locationHelper = require('../helpers/locationHelper.js');
 
 /**
 	* Manage a post request by saving the content file into local file,

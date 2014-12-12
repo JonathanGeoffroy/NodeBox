@@ -3,7 +3,7 @@ var router = express.Router();
 var fstream = require('fstream');
 var tar = require('tar');
 var fs = require('fs');
-var locationHelper = require('../locationHelper.js');
+var locationHelper = require('../helpers/locationHelper.js');
 
 /**
   * Send the right item (file or folder) into response so user can download it
