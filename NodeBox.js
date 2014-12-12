@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 
 var path = require('path');
-var getRoute = require('./routes/getRoute.js');
-var postRoute = require('./routes/postRoute.js');
+var listRoute = require('./routes/listRoute.js');
+var downloadRoute = require('./routes/downloadRoute.js');
+var uploadRoute = require('./routes/postRoute.js');
 
 var config = require('./config.js');
 
@@ -12,8 +13,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // add routes mapping
-app.use('/', getRoute);
-app.use('/', postRoute);
+app.use(config.downloadBaseRoute, downloadRoute);
+app.use('/', listRoute);
+app.use('/', uploadRoute);
 
 // development error handler
 // will print stacktrace

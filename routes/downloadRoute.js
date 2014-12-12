@@ -1,13 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
-var fs = require('fs');
-var tar = require('tar');
 var fstream = require('fstream');
+var tar = require('tar');
+var fs = require('fs');
 var locationHelper = require('../locationHelper.js');
-var htmlizer = require('../htmlizer.js');
-var config = require('../config.js');
-
 
 /**
   * Send the right item (file or folder) into response so user can download it
@@ -30,7 +26,7 @@ var download = function (locationPath, res) {
 /**
   * Manage a get request in order to download the item.
   */
-router.get(config.downloadBaseRoute + '/*', function (req, res) {
+router.get('/*', function (req, res) {
 	console.log('download');
 	var reqPath = req.params[0];
 	var locationPath = locationHelper.getFileLocation(reqPath);
@@ -40,23 +36,6 @@ router.get(config.downloadBaseRoute + '/*', function (req, res) {
 			res.render('list', {errors: [req.url + ' doesn\'t exist']});
 		} else {
 			download(locationPath, res);
-		}
-	});
-});
-
-/**
-  * Manage a get request in order to provide an HTML list concerning the current folder
-  */
-router.get('/*', function (req, res) {
-	var reqPath = req.params[0];
-	var locationPath = locationHelper.getFileLocation(reqPath);
-	fs.exists(locationPath, function (exists) {
-		if (!exists || !locationHelper.isDirectory(locationPath)) {
-			res.render('list', {errors: [req.url + ' doesn\'t exist']});
-		} else {
-			htmlizer.listFolder(locationPath, reqPath, function (itemList) {
-				res.render('list', itemList);
-			});
 		}
 	});
 });
