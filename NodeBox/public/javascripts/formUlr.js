@@ -1,1 +1,0 @@
-var inputFile = document.getElementById("inputFile");
