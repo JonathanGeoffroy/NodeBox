@@ -26,5 +26,7 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
-files/*
-./NodeBox/files/*
+
+# tmp files
+NodeBox/files/*
+
