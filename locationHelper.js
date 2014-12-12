@@ -31,5 +31,14 @@ module.exports = {
 
 	isDirectory: function (locationPath) {
 		return fs.statSync(locationPath).isDirectory();
+	},
+
+	/**
+	  * Return the name of the item contained into absolute path.
+	  * for example, if locationPath equals 'folder/subFolder/file', return 'file'
+	  */
+	getItemName: function (locationPath) {
+		var splittedLocationPath = locationPath.split('/');
+		return splittedLocationPath[splittedLocationPath.length - 1];
 	}
 };

@@ -1,3 +1,4 @@
 module.exports = {
-	fileLocation: './files'
+	fileLocation: './files',
+	downloadBaseRoute: '/download/'
 };

@@ -16,8 +16,9 @@
     "url": "https://github.com/JonathanGeoffroy/NodeBox/issues"
   },
   "dependencies": {
-    "underscore": "~1.7.0",
     "express": "~4.9.0",
-    "jade": "~1.6.0"
+    "jade": "~1.6.0",
+    "multiparty": "^4.1.0",
+    "underscore": "~1.7.0"
   }
 }
