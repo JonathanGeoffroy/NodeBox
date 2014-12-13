@@ -4,7 +4,7 @@ var async = require('async');
 var locationHelper = require('./locationHelper.js');
 var config = require('../config.js');
 
-var listLink = function (name, reqPath) {
+var computeListLink = function (name, reqPath) {
 	var link = '';
 	if (reqPath === '') {
 		link = name;
@@ -14,7 +14,7 @@ var listLink = function (name, reqPath) {
 	return link;
 };
 
-var downloadLink = function (name, reqPath) {
+var computeDownloadLink = function (name, reqPath) {
 	return config.downloadBaseRoute + '/' + reqPath + '/' + name;
 };
 
