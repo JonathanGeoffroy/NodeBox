@@ -10,12 +10,7 @@ router.post('/*', function (req, res) {
 	console.log('createFolder');
 	var reqLocation = req.params[0],
 		locationPath = locationHelper.getFileLocation(reqLocation);
-	fs.exists(locationPath, function (exists) {
-		if (!exists) {
-			locationHelper.createNonExistingFolders(reqLocation);
-		}
-		res.redirect(reqLocation);
-	});
+	// TODO: question 3
 });
 
 module.exports = router;

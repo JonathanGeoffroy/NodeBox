@@ -17,19 +17,8 @@ module.exports = {
 	  * Create each folder from url if it doesn't exist
 	  */
 	createNonExistingFolders : function (url) {
-		console.log(url);
-		var path = config.fileLocation + '/';
-		async.eachSeries(url.split('/'), function (folder, asyncCallback) {
-			path += folder + '/';
-			console.log(path);
-			fs.exists(path, function (exists) {
-				if (!exists) {
-					fs.mkdirSync(path);
-					console.log('created: ' + path);
-				}
-				asyncCallback();
-			});
-		});
+		// TODO: question 3
+		// Créer le/les dossier(s) manquant(s) à partir de l'url.
 	},
 
 	isDirectory: function (locationPath) {
