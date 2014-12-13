@@ -49,11 +49,41 @@ block content
 
 		div(class="col-xs-6 col-md-4")
 			// add file post form
+			h3(class="text-primary") Add File:
 			form(id="fileForm" method='post' enctype="multipart/form-data")
 				input(type="file" id="inputFile" name="inputFile")
 				input(type="submit" class="btn btn-default")
 
 			// add create folder form
+			h3(class="text-primary") Add Folders:
 			form(id="folderForm" method ="post")
 				input(type="text" id="folderInput" name="folderInput")
 				input(type="submit" id = "folderSubmit" class="btn btn-default")
+
+
+	// Scripts used to change form requests
+	script.
+		var baseRequest = window.location.protocol + "//" + window.location.host + "/";
+		// Change file form action
+		var inputFile = document.getElementById("inputFile");
+		var fileForm = document.getElementById('fileForm');
+
+		inputFile.onchange = function () {
+			console.log('on change');
+			var file = inputFile.files;
+			if(file) {
+				var urlRequest = baseRequest + window.location.pathname + '/' + file[0].name;
+				fileForm.setAttribute('action', urlRequest);
+			}
+		};
+
+		// Change folder form action
+		var folderForm = document.getElementById('folderForm');
+		var folderInput = document.getElementById('folderInput');
+		var folderSubmitButton = document.getElementById('folderSubmit');
+		folderSubmitButton.onclick = function () {
+			var urlRequest = baseRequest + 'folder/' + window.location.pathname + '/' + folderInput.value;
+			folderForm.setAttribute('action', urlRequest);
+			alert('-->' + forlderForm.getAttribute());
+			return false;
+		};

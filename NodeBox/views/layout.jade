@@ -4,29 +4,17 @@ html
 		title= "NodeBox - TP"
 		link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
 	body
-		block content
-	script.
-		var baseRequest = window.location.protocol + "//" + window.location.host + "/";
-		// Change file form action
-		var inputFile = document.getElementById("inputFile");
-		var fileForm = document.getElementById('fileForm');
+		nav(class="navbar navbar-default" role="navigation")
+			div(class="container")
+				div(id="navbar" class="navbar-collapse collapse")
+					ul(class="nav navbar-nav")
+						li
+							a(href="/") Home
+						li
+							a(href="/tp/") TP
+						li
+							a(href="/contacts/") contacts
 
-		inputFile.onchange = function () {
-			console.log('on change');
-			var file = inputFile.files;
-			if(file) {
-				var urlRequest = baseRequest + window.location.pathname + '/' + file[0].name;
-				fileForm.setAttribute('action', urlRequest);
-			}
-		};
-
-		// Change folder form action
-		var folderForm = document.getElementById('folderForm');
-		var folderInput = document.getElementById('folderInput');
-		var folderSubmitButton = document.getElementById('folderSubmit');
-		folderSubmitButton.onclick = function () {
-			var urlRequest = baseRequest + 'folder/' + window.location.pathname + '/' + folderInput.value;
-			folderForm.setAttribute('action', urlRequest);
-			alert('-->' + forlderForm.getAttribute());
-			return false;
-		};
+		// Page content
+		div(class="container")
+			block content
