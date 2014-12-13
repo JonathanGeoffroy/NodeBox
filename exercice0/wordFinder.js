@@ -4,8 +4,8 @@ var async = require('async');
 
 var nbTotal = 0;
 var NUMBER_OF_FILES_PARSED_SIMULTANEOUSLY = 8;
-var wordToFind = /adi/g;
-var path = "./resources/exercice0/";
+var wordToFind = /Module/g;
+var path = "./resources/";
 
 fs.readdir(path, function (err, filesInDir) {
 	async.eachLimit(filesInDir, NUMBER_OF_FILES_PARSED_SIMULTANEOUSLY,
