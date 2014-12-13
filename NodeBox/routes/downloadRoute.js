@@ -1,9 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var fstream = require('fstream');
-var tar = require('tar');
+var archiver = require('archiver');
 var fs = require('fs');
 var locationHelper = require('../helpers/locationHelper.js');
+
+
+/**
+  * Create a zip file which contains the content of `locationPath`,
+  * and send it to client
+  */
+var sendZip = function (locationPath, res) {
+	var archive = archiver('zip'),
+		archiveName = locationHelper.getItemName(locationPath);
+
+	archive.pipe(res);
+	archive.bulk([
+		{ expand: true, cwd: locationPath, src: ['**'], dest: archiveName}
+	]);
+	archive.finalize();
+};
 
 /**
   * Send the right item (file or folder) into response so user can download it
@@ -12,12 +27,7 @@ var locationHelper = require('../helpers/locationHelper.js');
   */
 var download = function (locationPath, res) {
 	if (locationHelper.isDirectory(locationPath)) {
-		var packer = tar.Pack();
-
-		// This must be a "directory"
-		fstream.Reader({ path: locationPath, type: "Directory" })
-		  .pipe(packer)
-		  .pipe(res);
+		sendZip(locationPath, res);
 	} else {
 		res.sendFile(locationPath, {root: __dirname + '/../' });
 	}
