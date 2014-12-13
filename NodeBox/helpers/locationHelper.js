@@ -35,7 +35,8 @@ module.exports = {
 	},
 
 	isDirectory: function (locationPath) {
-		return fs.statSync(locationPath).isDirectory();
+		// TODO: vérifier si locationPath pointe sur un répertoire
+		return false;
 	},
 
 	/**
