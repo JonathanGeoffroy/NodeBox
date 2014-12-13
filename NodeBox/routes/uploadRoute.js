@@ -21,9 +21,11 @@ app.post('/*', function (req, res, next) {
 			// If any error occurs, just call next to dispatch error
 			form.on('error', next);
 
-			// As soon as the form is readed, redirect the user to list
+			// As soon as the form is read, redirect the user to list
 			form.on('close', function () {
-				res.redirect(reqLocation.split('/').slice(0, -1).join('/'));
+				// TODO: question 2.2
+				// Rediriger l'utilisateur vers le listing du dossier
+				// où à été envoyé le fichier.
 			});
 
 			// listen on field event for title
@@ -31,7 +33,9 @@ app.post('/*', function (req, res, next) {
 
 			// listen on part event for file
 			form.on('part', function (part) {
-				part.pipe(fs.createWriteStream(filename));
+				// TODO: question 2.1
+				// récupérez les données envoyées par l'utilisateur,
+				// et les stocker dans un fichier sur le disque du serveur
 			});
 
 			 // parse the form
