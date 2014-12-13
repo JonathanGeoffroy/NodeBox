@@ -8,32 +8,52 @@ block content
 				each error in errors
 					li= error
 	else
-		p  
-			ul
+		div(class="col-xs-12 col-md-8")
+			p
 				if(files || folders)
-					each value, name in folders
-						li
-							if(value.downloadLink)
-								a(href="#{value.downloadLink}") 
-									img(src="http://simpleicon.com/wp-content/uploads/cloud-download-1.png" width="28" height="28")
-							a(href="#{value.listLink}") #{name}
-					each value, name in files
-						li
-							a(href="#{value.downloadLink}")
-								a(href="#{value.downloadLink}") 
-									img(src="http://simpleicon.com/wp-content/uploads/cloud-download-1.png" width="28" height="28")
-							= name
+					table(class="table table-striped")
+						tr
+							th type
+							th nom
+							th download
+
+						// for each folder
+						each value, name in folders
+							tr
+								// "folder" Type image
+								td
+									img(src="https://cdn4.iconfinder.com/data/icons/linecon/512/folder-32.png")
+								// List link
+								td
+									a(href="#{value.listLink}") #{name}
+								// download link
+								if(value.downloadLink)
+									td 
+										a(href="#{value.downloadLink}") 
+											img(src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/download2-32.png")
+
+						// For each file
+						each value, name in files
+							tr
+								// "file" type image
+								td
+									img(src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/12.File-32.png")
+								// File name
+								td= name
+								// download link
+								td
+									a(href="#{value.downloadLink}") 
+										img(src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/download2-32.png")
 				else
 					li empty folder
 
+		div(class="col-xs-6 col-md-4")
+			// add file post form
+			form(id="fileForm" method='post' enctype="multipart/form-data")
+				input(type="file" id="inputFile" name="inputFile")
+				input(type="submit" class="btn btn-default")
 
-
-		// add file post form
-		form(id="fileForm" method='post' enctype="multipart/form-data")
-			input(type="file" id="inputFile" name="inputFile")
-			input(type="submit" class="btn btn-default")
-
-		// add create folder form
-		form(id="folderForm" method ="post")
-			input(type="text" id="folderInput" name="folderInput")
-			input(type="submit" id = "folderSubmit" class="btn btn-default")			
+			// add create folder form
+			form(id="folderForm" method ="post")
+				input(type="text" id="folderInput" name="folderInput")
+				input(type="submit" id = "folderSubmit" class="btn btn-default")
