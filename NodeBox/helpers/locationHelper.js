@@ -14,18 +14,28 @@ module.exports = {
 	},
 
 	/**
+	  * Normalize url given in parameter by:
+	  *   * add a slash as first character if it's necessary,
+	  *   * remove successive slashes (i.e replace two or more consecutive slash by only one)
+	  */
+	normalizeUrl : function(url) {
+		url = url.replace(/\/{2,}/g, '/');
+		if (url.charAt(0) !== '/') {
+			url = '/' + url;
+		}
+		return url;
+	},
+
+	/**
 	  * Create each folder from url if it doesn't exist
 	  */
 	createNonExistingFolders : function (url) {
-		console.log(url);
 		var path = config.fileLocation + '/';
 		async.eachSeries(url.split('/'), function (folder, asyncCallback) {
 			path += folder + '/';
-			console.log(path);
 			fs.exists(path, function (exists) {
 				if (!exists) {
 					fs.mkdirSync(path);
-					console.log('created: ' + path);
 				}
 				asyncCallback();
 			});

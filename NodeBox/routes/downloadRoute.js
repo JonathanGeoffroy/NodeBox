@@ -27,12 +27,10 @@ var download = function (locationPath, res) {
   * Manage a get request in order to download the item.
   */
 router.get('/*', function (req, res) {
-	console.log('download');
 	var reqPath = req.params[0],
 		locationPath = locationHelper.getFileLocation(reqPath);
 	fs.exists(locationPath, function (exists) {
 		if (!exists) {
-			console.log(locationPath);
 			res.render('list', {errors: [req.url + ' doesn\'t exist']});
 		} else {
 			download(locationPath, res);
