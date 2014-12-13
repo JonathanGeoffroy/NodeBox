@@ -12,14 +12,13 @@ var locationHelper = require('../helpers/locationHelper.js');
   */
 var download = function (locationPath, res) {
 	if (locationHelper.isDirectory(locationPath)) {
-		var packer = tar.Pack();
-
-		// This must be a "directory"
-		fstream.Reader({ path: locationPath, type: "Directory" })
-		  .pipe(packer)
-		  .pipe(res);
+		// TODO: question 4.4:
+		// Compressez le contenu du dossier demandé par l'utilisateur,
+		// puis envoyez le fichier compressé créé à l'utilisateur.
+		// Pensez à utiliser des Stream si vous le pouvez!
 	} else {
-		res.sendFile(locationPath, {root: __dirname + '/../' });
+		// TODO: question 4.3:
+		// Envoyez le fichier demandé par l'utilisateur
 	}
 };
 
@@ -30,14 +29,9 @@ router.get('/*', function (req, res) {
 	console.log('download');
 	var reqPath = req.params[0],
 		locationPath = locationHelper.getFileLocation(reqPath);
-	fs.exists(locationPath, function (exists) {
-		if (!exists) {
-			console.log(locationPath);
-			res.render('list', {errors: [req.url + ' doesn\'t exist']});
-		} else {
-			download(locationPath, res);
-		}
-	});
+	// TODO: question 4.2:
+	// Si le fichier/dossier existe, appelez la fonction `download`,
+	// Sinon, redirigez vers la page `liste` en précisant l'erreur
 });
 
 module.exports = router;
