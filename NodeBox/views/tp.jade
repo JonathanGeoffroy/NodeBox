@@ -1,0 +1,70 @@
+extends layout
+
+block content
+	h1 TP
+	h2 Architecture
+	p
+		ul
+			li 
+				strong NodeBox.js: 
+				| point d'entrée du serveur. Crée le mapping entre les url et les routes (voir dossier routes/), et lance le serveur.
+			li 
+				strong routes: 
+				| contient les fichiers gérant les routes. Chaque route remplit une fonctionnalité:
+				ul
+					li 
+						em createFolderRoute.js 
+						| crée des répertoires,
+					li 
+						em downloadRoute.js 
+						| permet à l'utilisateur de télécharger un fichier ou un dossier depuis le serveur vers son disque,
+					li 
+						em listRoute.js 
+						| permet de lister les fichiers et dossiers du répertoire courant,
+					li 
+						em tpRoute.js 
+						| permet d'afficher cette page,
+					li 
+						em uploadRoute.js 
+						| permet à l'utilisateur de télécharger un fichier depuis son disque vers le serveur;
+			li 
+				strong views: 
+				| contient les templates jade permettant d'afficher un contenu html à partir des données des routes.
+			li 
+				strong helpers: 
+				| contient des modules NodeJS permettant de faire fonctionner l'application.
+				ul
+					li 
+						em htmlizer.js 
+						| crée la liste de fichiers à partir de l'url d'une requête.
+					li 
+						em locationHelper.js 
+						| convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
+				ul
+					li 
+						em layout.jade 
+						| affiche le header de la page, notamment la navbar,
+					li 
+						em liste.jade 
+						| affiche la liste du répertoire courant,
+					li 
+						em tp.jade 
+						| affiche cette page.
+			li 
+				strong config.js: 
+				| contient les données statiques utiles à l'applications, notamment la définition des routes pour chaque fonctionnalité.
+			li 
+				strong files: 
+				| dossier dans lequel vont être stockés les fichiers et dossiers envoyés par l'utilisateur.
+
+	h2 Liens Utiles
+	p
+		ul
+			li
+				a(href="http://slides.com/jbossut/node#/") Présentation
+			li
+				a(href="https://drive.google.com/file/d/0BxpCmD2YUdl9RjVzODJGdDdkWUE/view?usp=sharing") Notice d'installation
+			li
+				a(href="https://drive.google.com/file/d/0B9-RmOkIRcYOZzBfeG5WVjdlUXc/view?usp=sharing") Fiche Technique NodeJS
+			li
+				a(href="#") TP

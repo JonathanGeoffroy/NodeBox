@@ -1,8 +1,8 @@
 var fs = require('fs');
 var async = require('async');
 var config = require('../config.js');
-module.exports = {
 
+module.exports = {
 	/**
 	  * Find the location on server disk from the REST url
 	  */
