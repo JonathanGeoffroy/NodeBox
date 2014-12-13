@@ -19,14 +19,13 @@ var downloadLink = function (name, reqPath) {
 };
 
 var listDirectory = function (items, dirName, reqPath) {
-	items.folders[dirName] = {};
-	items.folders[dirName].listLink = listLink(dirName, reqPath);
-	items.folders[dirName].downloadLink = downloadLink(dirName, reqPath);
+	// TODO: question 1.2
+	// Lister un repértoire, en plaçant les bonnes informations dans la variable `items`
 };
 
 var listFile = function (items, fileName, reqPath) {
-	items.files[fileName] = {};
-	items.files[fileName].downloadLink = downloadLink(fileName, reqPath);
+	// TODO: question 1.2
+	// Lister un fichier, en plaçant les bonnes informations dans la variable `items`	
 };
 
 module.exports = {
@@ -39,10 +38,9 @@ module.exports = {
 			items.files = {};
 			items.folders = {};
 
-			// add '..' folder if reqPath isn't '/'
+			// add '..' folder if reqPath isn't ''
 			if (reqPath !== '') {
-				items.folders['..'] = {};
-				items.folders['..'].listLink = '/' + reqPath.split('/').slice(0, -1).join('/');
+				// TODO: question 1.1
 			}
 
 			// List each item
