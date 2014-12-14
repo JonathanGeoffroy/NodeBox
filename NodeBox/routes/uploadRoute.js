@@ -6,7 +6,7 @@ var fs = require('fs');
 var locationHelper = require('../helpers/locationHelper.js');
 
 /**
-	* Manage a post request by saving the content file into local file,
+	* Manage a POST request by saving the content file into local file,
 	* and returning the right answer to client:
 	*   -> 200 if file is saved
 	*   -> 409 if the file already exists
@@ -25,7 +25,7 @@ app.post('/*', function (req, res, next) {
 			form.on('close', function () {
 				// TODO: question 2.2
 				// Rediriger l'utilisateur vers le listing du dossier
-				// où à été envoyé le fichier.
+				// où a été envoyé le fichier.
 			});
 
 			// listen on field event for title
@@ -34,8 +34,8 @@ app.post('/*', function (req, res, next) {
 			// listen on part event for file
 			form.on('part', function (part) {
 				// TODO: question 2.1
-				// récupérez les données envoyées par l'utilisateur,
-				// et les stocker dans un fichier sur le disque du serveur
+				// Récupérez les données envoyées par l'utilisateur,
+				// et stockez-les dans un fichier sur le disque du serveur.
 			});
 
 			 // parse the form

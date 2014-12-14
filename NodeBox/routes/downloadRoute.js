@@ -7,8 +7,8 @@ var locationHelper = require('../helpers/locationHelper.js');
 
 /**
   * Send the right item (file or folder) into response so user can download it
-  * if locationPath points to a file, send the file content
-  * create a tarball a send the tarball otherwise
+  * If locationPath points to a file then send the file content,
+  * create a tarball and send the tarball otherwise
   */
 var download = function (locationPath, res) {
 	if (locationHelper.isDirectory(locationPath)) {
@@ -23,7 +23,7 @@ var download = function (locationPath, res) {
 };
 
 /**
-  * Manage a get request in order to download the item.
+  * Manage a GET request in order to download the item.
   */
 router.get('/*', function (req, res) {
 	console.log('download');

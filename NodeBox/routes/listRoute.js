@@ -6,7 +6,7 @@ var locationHelper = require('../helpers/locationHelper.js');
 var htmlizer = require('../helpers/htmlizer.js');
 
 /**
-  * Manage a get request in order to provide an HTML list concerning the current folder
+  * Manage a GET request in order to provide an HTML list of the content of the current folder.
   */
 router.get('/*', function (req, res) {
 	var reqPath = req.params[0],

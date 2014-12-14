@@ -4,7 +4,7 @@ var config = require('../config.js');
 
 module.exports = {
 	/**
-	  * Find the location on server disk from the REST url
+	  * Find the location on server disk from the REST url.
 	  */
 	getFileLocation : function (url) {
 		if (url.charAt(0) === '/') {
@@ -15,8 +15,8 @@ module.exports = {
 
 	/**
 	  * Normalize url given in parameter by:
-	  *   * add a slash as first character if it's necessary,
-	  *   * remove successive slashes (i.e replace two or more consecutive slash by only one)
+	  *   * adding a slash as first character if it's necessary,
+	  *   * removing successive slashes (i.e replace two or more consecutive slashes by only one)
 	  */
 	normalizeUrl : function(url) {
 		url = url.replace(/\/{2,}/g, '/');
@@ -27,7 +27,7 @@ module.exports = {
 	},
 	
 	/**
-	  * Create each folder from url if it doesn't exist
+	  * Create each folder from url if it doesn't exist.
 	  */
 	createNonExistingFolders : function (url) {
 		// TODO: question 3
@@ -35,13 +35,13 @@ module.exports = {
 	},
 
 	isDirectory: function (locationPath) {
-		// TODO: vérifier si locationPath pointe sur un répertoire
+		// TODO: vérifier si locationPath pointe sur un répertoire.
 		return false;
 	},
 
 	/**
 	  * Return the name of the item contained into absolute path.
-	  * for example, if locationPath equals 'folder/subFolder/file', return 'file'
+	  * For example, if locationPath equals 'folder/subFolder/file', return 'file'.
 	  */
 	getItemName: function (locationPath) {
 		var splittedLocationPath = locationPath.split('/');

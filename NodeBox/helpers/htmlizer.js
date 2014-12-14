@@ -20,17 +20,17 @@ var computeDownloadLink = function (name, reqPath) {
 
 var listDirectory = function (items, dirName, reqPath) {
 	// TODO: question 1.2
-	// Lister un repértoire, en plaçant les bonnes informations dans la variable `items`
+	// Lister un répertoire, en plaçant les bonnes informations dans la variable `items`.
 };
 
 var listFile = function (items, fileName, reqPath) {
 	// TODO: question 1.2
-	// Lister un fichier, en plaçant les bonnes informations dans la variable `items`	
+	// Lister un fichier, en plaçant les bonnes informations dans la variable `items`.
 };
 
 module.exports = {
 	/**
-	  * List a folder by giving html list to request response
+	  * List a folder by giving html list to request response.
 	  */
 	listFolder: function (locationPath, reqPath, callback) {
 		fs.readdir(locationPath, function (err, names) {
