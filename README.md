@@ -24,12 +24,13 @@ NodeBox peut être testé [ici](http://nodebox.cloudapp.net:1337).
   * tpRoute.js permet d'afficher cette page,
   * uploadRoute.js permet à l'utilisateur de télécharger un fichier depuis son disque vers le serveur;
 * views:  contient les templates jade permettant d'afficher un contenu html à partir des données des routes.
-* helpers: contient des modules NodeJS permettant de faire fonctionner l'application.
-  * htmlizer.js crée la liste de fichiers à partir de l'url d'une requête.
-  * locationHelper.js convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
   * layout.jade affiche le header de la page, notamment la navbar,
   * liste.jade affiche la liste du répertoire courant,
   * tp.jade affiche cette page.
+* helpers: contient des modules NodeJS permettant de faire fonctionner l'application.
+  * htmlizer.js crée la liste de fichiers à partir de l'url d'une requête.
+  * locationHelper.js convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
+* tests: contient les tests unitaires de l'application.
 * config.js: contient les données statiques utiles à l'applications, notamment la définition des routes pour chaque fonctionnalité.
 * files:  dossier dans lequel vont être stockés les fichiers et dossiers envoyés par l'utilisateur.
 
