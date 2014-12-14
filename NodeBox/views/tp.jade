@@ -30,16 +30,6 @@ block content
 			li 
 				strong views: 
 				| contient les templates jade permettant d'afficher un contenu html à partir des données des routes.
-			li 
-				strong helpers: 
-				| contient des modules NodeJS permettant de faire fonctionner l'application.
-				ul
-					li 
-						em htmlizer.js 
-						| crée la liste de fichiers à partir de l'url d'une requête.
-					li 
-						em locationHelper.js 
-						| convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
 				ul
 					li 
 						em layout.jade 
@@ -50,6 +40,16 @@ block content
 					li 
 						em tp.jade 
 						| affiche cette page.
+			li 
+				strong helpers: 
+				| contient des modules NodeJS permettant de faire fonctionner l'application.
+				ul
+					li 
+						em htmlizer.js 
+						| crée la liste de fichiers à partir de l'url d'une requête.
+					li 
+						em locationHelper.js 
+						| convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
 			li 
 				strong config.js: 
 				| contient les données statiques utiles à l'applications, notamment la définition des routes pour chaque fonctionnalité.
