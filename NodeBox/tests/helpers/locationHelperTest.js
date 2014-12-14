@@ -104,3 +104,42 @@ vows.describe('LocationHelper.isDirectory').addBatch({
 		}
 	}
 }).run(); // Run it
+
+vows.describe('LocationHelper.getItemName').addBatch({
+	'The item name of root': {
+		topic: function () {
+			return locationHelper.getItemName('/');
+		},
+
+		'should be an empty string': function (topic) {
+			assert.equal(topic, '');
+		}
+	},
+	'The item name of a string without any slash': {
+		topic: function () {
+			return locationHelper.getItemName('theString');
+		},
+
+		'shoud be the string itself': function (topic) {
+			assert.equal(topic, "theString");
+		}
+	},
+	'The item name of a string which contains a slash': {
+		topic: function () {
+			return locationHelper.getItemName('theFirst/theSecond');
+		},
+
+		'shoud be the second par of the string': function (topic) {
+			assert.equal(topic, "theSecond");
+		}
+	},
+	'The item name of a string which contains two slashes': {
+		topic: function () {
+			return locationHelper.getItemName('theFirst/theSecond/theThird');
+		},
+
+		'shoud be the last par of the string': function (topic) {
+			assert.equal(topic, "theThird");
+		}
+	}
+}).run(); // Run it
