@@ -4,7 +4,7 @@ var fs = require('fs');
 var locationHelper = require('../helpers/locationHelper.js');
 
 /**
-  * Manage a post request in order to create new folders.
+  * Manage a POST request in order to create new folders.
   */
 router.post('/*', function (req, res) {
 	var reqLocation = req.params[0],

@@ -34,7 +34,7 @@ var download = function (locationPath, res) {
 };
 
 /**
-  * Manage a get request in order to download the item.
+  * Manage a GET request in order to download the item.
   */
 router.get('/*', function (req, res) {
 	var reqPath = req.params[0],
