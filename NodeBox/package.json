@@ -21,6 +21,8 @@
     "multiparty": "^4.1.0",
     "tar": "^1.0.3",
     "underscore": "~1.7.0",
-    "archiver": "~0.13.0"
+    "archiver": "~0.13.0",
+    "assert": "~1.1.2",
+    "vows": "~0.8.1"
   }
 }
