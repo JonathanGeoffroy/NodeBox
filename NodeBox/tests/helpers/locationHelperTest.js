@@ -1,5 +1,6 @@
 var vows = require('vows'),
 	assert = require('assert');
+var tmp = require('tmp');
 var locationHelper = require(__dirname + "/../../helpers/locationHelper.js");
 var config = require(__dirname + "/../../config.js");
 
@@ -73,6 +74,33 @@ vows.describe('LocationHelper.normalizeUrl').addBatch({
 
 		'we get url which begin by slash, but unnecessary slahes are removed': function (topic) {
 			assert.equal(topic, '/first/second');
+		}
+	}
+}).run(); // Run it
+
+vows.describe('LocationHelper.isDirectory').addBatch({
+	'when we call isDirectory with a directory': {
+		topic: function () {
+			var self = this;
+			tmp.dir(function _tempDirCreated(err, dirPath) {
+				self.callback(err, locationHelper.isDirectory(dirPath));
+			});
+		},
+
+		'it responds true': function (topic) {
+			assert.equal(topic, true);
+		}
+	},
+	'but when we call isDirectory with a file': {
+		topic: function () {
+			var self = this;
+			tmp.file(function _tempDirCreated(err, filePath) {
+				self.callback(err, locationHelper.isDirectory(filePath));
+			});
+		},
+
+		'it responds false': function (topic) {
+			assert.equal(topic, false);
 		}
 	}
 }).run(); // Run it
