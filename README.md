@@ -32,6 +32,7 @@ NodeBox peut être testé [ici](http://nodebox.cloudapp.net:1337).
 * helpers: contient des modules NodeJS permettant de faire fonctionner l'application.
   * htmlizer.js crée la liste de fichiers à partir de l'url d'une requête.
   * locationHelper.js convertit l'url d'une requête en données exploitable (notamment trouver le chemin vers les fichiers sur le disque depuis l'url par exemple).
+* tests: contient les tests unitaires de l'application.
 * config.js: contient les données statiques utiles à l'applications, notamment la définition des routes pour chaque fonctionnalité.
 * files:  dossier dans lequel vont être stockés les fichiers et dossiers envoyés par l'utilisateur.
 
