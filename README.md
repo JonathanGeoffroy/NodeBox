@@ -11,7 +11,7 @@ Auteurs :
 _Attention : cette branche contient une version incomplète de l'application, pour un atelier. La version terminée se trouve sur la branche develop._
 
 NodeBox est un serveur type "Dropbox" pour le stockage de fichiers, développé en NodeJS. 
-Les fichiers sont stcokés dans une architecture REST.
+Les fichiers sont stockés dans une architecture REST.
 La partie front-end de NodeBox s'appuie sur le framework Express.js.
 
 NodeBox peut être testé [ici](http://nodebox.cloudapp.net:1337).
@@ -40,6 +40,7 @@ NodeBox peut être testé [ici](http://nodebox.cloudapp.net:1337).
 
 * [NodeBox](http://nodebox.cloudapp.net:1337)
 * [Fiche technique sur NodeJS](https://drive.google.com/file/d/0B9-RmOkIRcYOZzBfeG5WVjdlUXc/view)
+* [Fiche technique minimisé sur NodeJS](https://drive.google.com/file/d/0B9-RmOkIRcYOUjZ0cDhhZ3dBZ3M/view)
 * [Présentation de NodeJS](http://slides.com/jbossut/node#/)
 * [Notice d'installation de NodeJS](https://drive.google.com/file/d/0BxpCmD2YUdl9RjVzODJGdDdkWUE/view) 
 * [NodeJS](http://nodejs.org/)
