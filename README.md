@@ -38,6 +38,7 @@ NodeBox peut être testé [ici](http://nodebox.cloudapp.net:1337).
 
 * [NodeBox](http://nodebox.cloudapp.net:1337)
 * [Fiche technique sur NodeJS](https://drive.google.com/file/d/0B9-RmOkIRcYOZzBfeG5WVjdlUXc/view)
+* [Fiche technique minimisé sur NodeJS](https://drive.google.com/file/d/0B9-RmOkIRcYOUjZ0cDhhZ3dBZ3M/view)
 * [Présentation de NodeJS](http://slides.com/jbossut/node#/)
 * [Notice d'installation de NodeJS](https://drive.google.com/file/d/0BxpCmD2YUdl9RjVzODJGdDdkWUE/view) 
 * [NodeJS](http://nodejs.org/)
